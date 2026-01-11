@@ -4,6 +4,7 @@ from models import Product
 from database import SessionLocal, engine
 import database_models
 from sqlalchemy.orm import Session
+import os
 
 database_models.Base.metadata.create_all(bind=engine)
 
@@ -12,6 +13,10 @@ app = FastAPI()
 origins = [
     "http://localhost:5173",
 ]
+
+production_frontend = os.getenv("FRONTEND_URL")
+if production_frontend:
+    origins.append(production_frontend)
 
 app.add_middleware(
     CORSMiddleware,
