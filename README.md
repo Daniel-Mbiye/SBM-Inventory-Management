@@ -25,7 +25,7 @@ Node.js & npm
 PostgreSQL instance
 
 ## Installation
-**Clone the Repo**: git clone https://github.com/yourusername/inventory-flow.git
+**Clone the Repo**: git clone https://github.com/Daniel-Mbiye/SBM-Inventory-Management.git
 
 **Backend Setup**: Navigate to /backend, install dependencies via pip install -r requirements.txt, and start the server with uvicorn main:app --reload.
 
