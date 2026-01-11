@@ -5,6 +5,9 @@ import ProductForm from './components/ProductForm';
 import InfoCard from './components/InfoCard';
 import ProductList from './components/ProductList';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000";
+
+
 // Placeholder data for visual verification if API is down
 const MOCK_DATA = [
   { id: '101', name: 'Wireless Headset', description: 'Noise cancelling', price: 199.99, quantity: 15 },
@@ -20,7 +23,7 @@ function App() {
   const fetchProducts = async () => {
     try {
       // Attempt fetch
-      const res = await fetch('http://localhost:8000/products');
+      const res = await fetch('API_BASE_URL/products');
       if (!res.ok) throw new Error('Failed to fetch');
       const data = await res.json();
       setProducts(data);
@@ -38,8 +41,8 @@ function App() {
     try {
       const isEditing = !!editingProduct;
       const url = isEditing
-        ? `http://localhost:8000/products/${product.id}`
-        : 'http://localhost:8000/products';
+        ? `API_BASE_URL/products/${product.id}`
+        : 'API_BASE_URL/products';
       const method = isEditing ? 'PUT' : 'POST';
 
       const res = await fetch(url, {
@@ -72,7 +75,7 @@ function App() {
 
   const handleDeleteProduct = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8000/products/${id}`, {
+      const res = await fetch(`API_BASE_URL/products/${id}`, {
         method: 'DELETE',
       });
       if (res.ok) {
